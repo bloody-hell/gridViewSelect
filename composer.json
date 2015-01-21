@@ -12,7 +12,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "yiisoft/yii2": "master",
+        "yiisoft/yii2": "2.0.0",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-jui": "*"
     },
