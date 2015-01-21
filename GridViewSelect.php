@@ -25,13 +25,13 @@ class GridViewSelect extends InputWidget
 
     public $valueLabel;
 
-    /**
-     * @var
-     */
+    /** @var  callable */
     public $labelExpression;
 
+    /** @var  callable */
     public $linkExpression;
 
+    /** @var  callable */
     public $keyFunction;
 
     public $pjaxOptions = [];
@@ -92,6 +92,7 @@ class GridViewSelect extends InputWidget
                             'id'         => $this->getId().'_'.$value,
                             'data-label' => $label,
                             'data-url'   => $url,
+                            'label'      => false,
                         ]) :
                         Html::radio($this->name, $value == $this->value, [
                             'value'      => $value,
@@ -142,7 +143,7 @@ class GridViewSelect extends InputWidget
 
         $dialog->end();
         echo '&nbsp;&nbsp;';
-        echo Html::a('Выбрать...', '#', ['id' => $this->getLinkId()]);
+        echo Html::a(\Yii::t('grid-view-select', 'Select...'), '#', ['id' => $this->getLinkId()]);
         echo Html::endTag('div');
 
         $this->view->registerJs('
@@ -162,7 +163,7 @@ $(\'#'.$this->getLinkId().'\').on(\'click\', function(){
 
         return Html::tag($tag, implode(PHP_EOL, [
             Button::widget([
-                'label'  => 'Выбрать',
+                'label'  => \Yii::t('grid-view-select', 'Select'),
                 'options'=> [
                     'class'     => 'btn-success',
                     'onclick'   => new JsExpression('
@@ -180,7 +181,7 @@ $(\'#'.$this->getLinkId().'\').on(\'click\', function(){
             ]),
 
             Button::widget([
-                'label'  => 'Отмена',
+                'label'  => \Yii::t('grid-view-select', 'Cancel'),
                 'options'=> [
                     'class'     => 'btn-danger',
                     'onclick'   => new JsExpression('$(\'#'.$this->getDialogId().'\').dialog(\'close\'); return false;'),
